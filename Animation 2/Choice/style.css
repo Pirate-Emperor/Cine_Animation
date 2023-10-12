@@ -1,0 +1,139 @@
+body {
+  background: radial-gradient(#444, #53346d);
+  font-family: "Comfortaa", sans-serif;
+}
+
+.main-content {
+  max-width: 700px;
+  margin: 4em auto 0;
+  text-align: center;
+}
+
+h1 {
+  margin: 2em 0;
+  color: #fff;
+}
+
+svg {
+  display: inline-block;
+}
+
+.illustration {
+  position: relative;
+  align-self: end;
+  margin: auto;
+  height: 250px;
+  width: 250px;
+}
+
+.boy,
+.scenery,
+.background-items,
+.foreground-items {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.scenery {
+  transition: all 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.background-items {
+  transition: all 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55) 100ms;
+  top: 23px;
+}
+
+.foreground-items {
+  transition: all 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55) 200ms;
+  bottom: 20px;
+}
+
+.home-body .foreground-items {
+  margin-left: -60px;
+}
+
+.outdoor-person .foreground-items {
+  margin-right: -80px;
+}
+
+.boy {
+  bottom: 25px;
+  margin-right: -65px;
+  z-index: 10;
+}
+
+.person-type > div {
+  transform: scale(0);
+  opacity: 0;
+}
+
+.person-type.active > div {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.option-wrapper {
+  display: flex;
+  margin: 3em auto;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  padding: 5px;
+  max-width: 300px;
+  font-size: 12px;
+  line-height: 1.2;
+}
+.option-wrapper .option {
+  transition: all 200ms ease;
+  padding: 10px 10px 8px;
+  width: 50%;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+}
+.option-wrapper .option.active {
+  background: #fff;
+  color: #333;
+  pointer-events: none;
+}
+
+aside.context {
+  text-align: center;
+  color: #fff;
+}
+aside.context a {
+  text-decoration: none;
+  color: #fff;
+  padding: 3px 0;
+  border-bottom: 1px dashed;
+}
+aside.context .explanation {
+  max-width: 700px;
+  margin: 4em auto;
+}
+
+footer {
+  text-align: center;
+  margin: 8em auto;
+  width: 100%;
+}
+footer a {
+  text-decoration: none;
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px dashed #fff;
+  color: #fff;
+  margin: 5px;
+}
+footer a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+footer a .icons {
+  margin-top: 12px;
+  display: inline-block;
+  font-size: 20px;
+}

@@ -1,0 +1,771 @@
+:root {
+	--opacity-start: 0.4;
+	--minor-rotate-dur: 1s;
+	
+	--ferris-wheel-del: 0s;
+  --ferris-wheel-dur: 20s;
+	
+	--eiffel-opacity-del: 1s;
+	--eiffel-opacity-dur: 5s;
+	
+	--balloon-lines-del: 2s;
+	--balloon-lines-dur: 4s;
+	
+	--luxor-light-del: 3s;
+	--luxor-light-dur: 5s;
+	
+	--sign-opacity-del: 5s;
+	--sign-opacity-dur: 10s;
+	
+	--excalibur-opacity-del: 7s;
+	--excalibur-opacity-dur: 10s;
+	
+}
+
+body {
+	background-color: #222;
+	display: flex;
+	justify-content: center;
+}
+
+.rnr {
+	height: 95vh;
+	margin-top: 1vh;
+}
+
+#ferris-wheel {
+	#wheel {
+		transform-origin: 600.98px 658.5px;
+		transform: rotate(0deg);
+		animation: ferris-wheel var(--ferris-wheel-dur) linear var(--ferris-wheel-del) infinite;
+		
+		@keyframes ferris-wheel {
+			0% {
+				transform: rotate(0deg);
+			}
+			
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+	}
+}
+
+#diamond {
+	transform-box: fill-box;
+	transform-origin: center center;
+	transform: rotate(0deg);
+	animation: shake-left var(--minor-rotate-dur) linear infinite;
+}
+
+#martini-glass {
+	transform-box: fill-box;
+	transform-origin: center center;
+	transform: rotate(0deg);
+	animation: shake-left var(--minor-rotate-dur) linear infinite;
+}
+
+#music-note {
+	transform-box: fill-box;
+	transform-origin: center center;
+	transform: rotate(0deg);
+	animation: shake-right var(--minor-rotate-dur) linear infinite;
+}
+
+#welcome-sign {
+	.sign-letter {
+		opacity: var(--opacity-start);
+	}
+	
+	#sign-outline {
+		opacity: 1;
+		
+		line, path {
+			animation: opacity-sign-outline var(--sign-opacity-dur) linear var(--sign-opacity-del) infinite;
+		}
+		
+		@keyframes opacity-sign-outline {
+			0%, 55% {
+				opacity: 1;
+			}
+			
+			55.1%, 58% {
+				opacity: var(--opacity-start);
+			}
+			
+			58.1%, 61% {
+				opacity: 1;
+			}
+			
+			61.1%, 64% {
+				opacity: var(--opacity-start);
+			}
+			
+			64.1%, 99.9% {
+				opacity: 1;
+			}
+
+			100% {
+				opacity: var(--opacity-start);
+			}
+		}
+	}
+	
+	#sign-w {
+		animation: opacity-sign-w var(--sign-opacity-dur) linear var(--sign-opacity-del) infinite;
+		
+		@keyframes opacity-sign-w {
+			0%, 9.9% {
+				opacity: var(--opacity-start);
+			}
+			
+			10%, 55% {
+				opacity: 1;
+			}
+			
+			55.1%, 58% {
+				opacity: var(--opacity-start);
+			}
+			
+			58.1%, 61% {
+				opacity: 1;
+			}
+			
+			61.1%, 64% {
+				opacity: var(--opacity-start);
+			}
+			
+			64.1%, 99.9% {
+				opacity: 1;
+			}
+
+			100% {
+				opacity: var(--opacity-start);
+			}
+		}
+	}
+	
+	#sign-e-1 {
+		animation: opacity-sign-e-1 var(--sign-opacity-dur) linear var(--sign-opacity-del) infinite;
+		
+		@keyframes opacity-sign-e-1 {
+			0%, 14.9% {
+				opacity: var(--opacity-start);
+			}
+			
+			15%, 55% {
+				opacity: 1;
+			}
+			
+			55.1%, 58% {
+				opacity: var(--opacity-start);
+			}
+			
+			58.1%, 61% {
+				opacity: 1;
+			}
+			
+			61.1%, 64% {
+				opacity: var(--opacity-start);
+			}
+			
+			64.1%, 99.9% {
+				opacity: 1;
+			}
+
+			100% {
+				opacity: var(--opacity-start);
+			}
+		}
+	}
+	
+	#sign-l {
+		animation: opacity-sign-l var(--sign-opacity-dur) linear var(--sign-opacity-del) infinite;
+		
+		@keyframes opacity-sign-l {
+			0%, 19.9% {
+				opacity: var(--opacity-start);
+			}
+			
+			20% {
+				opacity: 1;
+			}
+			
+			55% {
+				opacity: 1;
+			}
+			
+			55.1%, 58% {
+				opacity: var(--opacity-start);
+			}
+			
+			58.1%, 61% {
+				opacity: 1;
+			}
+			
+			61.1%, 64% {
+				opacity: var(--opacity-start);
+			}
+			
+			64.1%, 99.9% {
+				opacity: 1;
+			}
+
+			100% {
+				opacity: var(--opacity-start);
+			}
+		}
+	}
+	
+	#sign-c {
+		animation: opacity-sign-c var(--sign-opacity-dur) linear var(--sign-opacity-del) infinite;
+		
+		@keyframes opacity-sign-c {
+			0%, 24.9% {
+				opacity: var(--opacity-start);
+			}
+			
+			25% {
+				opacity: 1;
+			}
+			
+			55% {
+				opacity: 1;
+			}
+			
+			55.1%, 58% {
+				opacity: var(--opacity-start);
+			}
+			
+			58.1%, 61% {
+				opacity: 1;
+			}
+			
+			61.1%, 64% {
+				opacity: var(--opacity-start);
+			}
+			
+			64.1%, 99.9% {
+				opacity: 1;
+			}
+
+			100% {
+				opacity: var(--opacity-start);
+			}
+		}
+	}
+	
+	#sign-o {
+		animation: opacity-sign-o var(--sign-opacity-dur) linear var(--sign-opacity-del) infinite;
+		
+		@keyframes opacity-sign-o {
+			0%, 29.9% {
+				opacity: var(--opacity-start);
+			}
+			
+			30% {
+				opacity: 1;
+			}
+			
+			55% {
+				opacity: 1;
+			}
+			
+			55.1%, 58% {
+				opacity: var(--opacity-start);
+			}
+			
+			58.1%, 61% {
+				opacity: 1;
+			}
+			
+			61.1%, 64% {
+				opacity: var(--opacity-start);
+			}
+			
+			64.1%, 99.9% {
+				opacity: 1;
+			}
+
+			100% {
+				opacity: var(--opacity-start);
+			}
+		}
+	}
+	
+	#sign-m {
+		animation: opacity-sign-m var(--sign-opacity-dur) linear var(--sign-opacity-del) infinite;
+		
+		@keyframes opacity-sign-m {
+			0%, 34.9% {
+				opacity: var(--opacity-start);
+			}
+			
+			35% {
+				opacity: 1;
+			}
+			
+			55% {
+				opacity: 1;
+			}
+			
+			55.1%, 58% {
+				opacity: var(--opacity-start);
+			}
+			
+			58.1%, 61% {
+				opacity: 1;
+			}
+			
+			61.1%, 64% {
+				opacity: var(--opacity-start);
+			}
+			
+			64.1%, 99.9% {
+				opacity: 1;
+			}
+
+			100% {
+				opacity: var(--opacity-start);
+			}
+		}
+	}
+	
+	#sign-e-2 {
+		animation: opacity-sign-e-2 var(--sign-opacity-dur) linear var(--sign-opacity-del) infinite;
+		
+		@keyframes opacity-sign-e-2 {
+			0%, 39.9% {
+				opacity: var(--opacity-start);
+			}
+			
+			40% {
+				opacity: 1;
+			}
+			
+			55% {
+				opacity: 1;
+			}
+			
+			55.1%, 58% {
+				opacity: var(--opacity-start);
+			}
+			
+			58.1%, 61% {
+				opacity: 1;
+			}
+			
+			61.1%, 64% {
+				opacity: var(--opacity-start);
+			}
+			
+			64.1%, 99.9% {
+				opacity: 1;
+			}
+
+			100% {
+				opacity: var(--opacity-start);
+			}
+		}
+	}
+	
+	#welcome-date {
+		animation: opacity-sign-date var(--sign-opacity-dur) linear var(--sign-opacity-del) infinite;
+		
+		@keyframes opacity-sign-date {
+			0%, 44.9% {
+				opacity: var(--opacity-start);
+			}
+			
+			45% {
+				opacity: 1;
+			}
+			
+			55% {
+				opacity: 1;
+			}
+			
+			55.1%, 58% {
+				opacity: var(--opacity-start);
+			}
+			
+			58.1%, 61% {
+				opacity: 1;
+			}
+			
+			61.1%, 64% {
+				opacity: var(--opacity-start);
+			}
+			
+			64.1%, 99.9% {
+				opacity: 1;
+			}
+
+			100% {
+				opacity: var(--opacity-start);
+			}
+		}
+	}
+}
+	
+#eiffel-tower {
+	#eiffel-tower-1 {
+		animation: opacity-eiffel-1 var(--eiffel-opacity-dur) linear var(--eiffel-opacity-del) infinite;
+		
+		@keyframes opacity-eiffel-1 {
+			0%, 10% {
+				opacity: var(--opacity-start);
+			}
+			
+			10.1%, 100% {
+				opacity: 1;
+			}
+		}
+	}
+	
+	#eiffel-tower-2 {
+		animation: opacity-eiffel-2 var(--eiffel-opacity-dur) linear var(--eiffel-opacity-del) infinite;
+		
+		@keyframes opacity-eiffel-2 {
+			0%, 15% {
+				opacity: var(--opacity-start);
+			}
+			
+			15.1%, 100% {
+				opacity: 1;
+			}
+		}
+	}
+	
+	#eiffel-tower-3 {
+		animation: opacity-eiffel-3 var(--eiffel-opacity-dur) linear var(--eiffel-opacity-del) infinite;
+		
+		@keyframes opacity-eiffel-3 {
+			0%, 20% {
+				opacity: var(--opacity-start);
+			}
+			
+			20.1%, 100% {
+				opacity: 1;
+			}
+		}
+	}
+	
+	#eiffel-tower-4 {
+		animation: opacity-eiffel-4 var(--eiffel-opacity-dur) linear var(--eiffel-opacity-del) infinite;
+		
+		@keyframes opacity-eiffel-4 {
+			0%, 25% {
+				opacity: var(--opacity-start);
+			}
+			
+			25.1%, 100% {
+				opacity: 1;
+			}
+		}
+	}
+	
+	#eiffel-tower-5 {
+		animation: opacity-eiffel-5 var(--eiffel-opacity-dur) linear var(--eiffel-opacity-del) infinite;
+		
+		@keyframes opacity-eiffel-5 {
+			0%, 30% {
+				opacity: var(--opacity-start);
+			}
+			
+			30.1%, 100% {
+				opacity: 1;
+			}
+		}
+	}
+	
+	#eiffel-tower-6 {
+		animation: opacity-eiffel-6 var(--eiffel-opacity-dur) linear var(--eiffel-opacity-del) infinite;
+		
+		@keyframes opacity-eiffel-6 {
+			0%, 35% {
+				opacity: var(--opacity-start);
+			}
+			
+			35.1%, 100% {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+#heart {
+	transform-box: fill-box;
+	transform-origin: center center;
+	transform: rotate(0deg);
+	animation: shake-right var(--minor-rotate-dur) linear infinite;
+}
+
+#luxor {
+	
+	#light-bg {
+		opacity: var(--opacity-start);
+	}
+	
+	#light {
+		#middle-light {
+			stroke-dasharray: 116;
+    	stroke-dashoffset: 0;
+			animation: luxor-light-middle var(--luxor-light-dur) linear var(--luxor-light-del) infinite;
+			
+			@keyframes luxor-light-middle {
+				0% {
+					stroke-dashoffset: 116;
+				}
+				
+				10%, 70% {
+					stroke-dashoffset: 0;
+				}
+				
+				70.1%, 100% {
+					stroke-dashoffset: 116;
+				}
+			}
+		}
+
+		#left-yellow-light {
+			stroke-dasharray: 100;
+    	stroke-dashoffset: 0;
+			animation: luxor-light-left-yellow var(--luxor-light-dur) linear var(--luxor-light-del) infinite;
+			
+			@keyframes luxor-light-left-yellow {
+				0% {
+					stroke-dashoffset: 100;
+				}
+				
+				10%, 70% {
+					stroke-dashoffset: 0;
+				}
+				
+				70.1%, 100% {
+					stroke-dashoffset: 100;
+				}
+			}
+		}
+
+		#right-yellow-light {
+			stroke-dasharray: 100;
+    	stroke-dashoffset: 0;
+			animation: luxor-light-right-yellow var(--luxor-light-dur) linear var(--luxor-light-del) infinite;
+			
+			@keyframes luxor-light-right-yellow {
+				0% {
+					stroke-dashoffset: 100;
+				}
+				
+				10%, 70% {
+					stroke-dashoffset: 0;
+				}
+				
+				70.1%, 100% {
+					stroke-dashoffset: 100;
+				}
+			}
+		}
+
+		#right-white-light {
+			stroke-dasharray: 119;
+    	stroke-dashoffset: 0;
+			animation: luxor-light-right-white var(--luxor-light-dur) linear var(--luxor-light-del) infinite;
+			
+			@keyframes luxor-light-right-white {
+				0% {
+					stroke-dashoffset: 119;
+				}
+				
+				10%, 70% {
+					stroke-dashoffset: 0;
+				}
+				
+				70.1%, 100% {
+					stroke-dashoffset: 119;
+				}
+			}
+		}
+
+		#left-white-light {
+			stroke-dasharray: 103;
+    	stroke-dashoffset: 0;
+			animation: luxor-light-left-white var(--luxor-light-dur) linear var(--luxor-light-del) infinite;
+			
+			@keyframes luxor-light-left-white {
+				0% {
+					stroke-dashoffset: 103;
+				}
+				
+				10%, 70% {
+					stroke-dashoffset: 0;
+				}
+				
+				70.1%, 100% {
+					stroke-dashoffset: 103;
+				}
+			}
+		}
+	}
+}
+
+#excalibur {
+	#left-tower {
+		animation: opacity-excalibur-1 var(--excalibur-opacity-dur) linear var(--excalibur-opacity-del) infinite;
+		
+		@keyframes opacity-excalibur-1 {
+			0%, 10% {
+				opacity: var(--opacity-start);
+			}
+			
+			10.1%, 100% {
+				opacity: 1;
+			}
+		}
+	}
+	
+	#center-tower {
+		animation: opacity-excalibur-2 var(--excalibur-opacity-dur) linear var(--excalibur-opacity-del) infinite;
+		
+		@keyframes opacity-excalibur-2 {
+			0%, 15% {
+				opacity: var(--opacity-start);
+			}
+			
+			15.1%, 100% {
+				opacity: 1;
+			}
+		}
+	}
+	
+	#right-tower {
+		animation: opacity-excalibur-3 var(--excalibur-opacity-dur) linear var(--excalibur-opacity-del) infinite;
+		
+		@keyframes opacity-excalibur-3 {
+			0%, 20% {
+				opacity: var(--opacity-start);
+			}
+			
+			20.1%, 100% {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+#statue-of-liberty {
+	#flame {
+		transform-box: fill-box;
+		transform-origin: bottom center;
+		transform: rotate(0deg);
+		animation: diamond var(--minor-rotate-dur) linear infinite;
+
+		@keyframes diamond {
+			0%, 24.9% {
+				transform: rotate(0deg);
+			}
+
+			25%, 74.9% {
+				transform: rotate(-8deg);
+			}
+
+			75%, 100% {
+				transform: rotate(0deg);
+			}
+		}
+	}
+}
+
+#spade, #diamond-2 {
+	transform-box: fill-box;
+	transform-origin: center center;
+	transform: rotate(0deg);
+	animation: shake-left var(--minor-rotate-dur) linear infinite;
+}
+
+#clover-leaf {
+	transform-box: fill-box;
+	transform-origin: center center;
+	transform: rotate(0deg);
+	animation: shake-right var(--minor-rotate-dur) linear infinite;
+}
+
+#dice {
+		transform-box: fill-box;
+		transform-origin: center center;
+		transform: rotate(0deg);
+		animation: shake-right var(--minor-rotate-dur) linear infinite;
+}
+
+.balloon-line-left {
+	stroke-dasharray: 500;
+	stroke-dashoffset: 0;
+	animation: balloon-lines-left var(--balloon-lines-dur) linear var(--balloon-lines-del) infinite;
+
+	@keyframes balloon-lines-left {
+		0% {
+			stroke-dashoffset: 500;
+		}
+
+		60%, 90% {
+			stroke-dashoffset: 0;
+		}
+
+		90.1%, 100% {
+			stroke-dashoffset: 500;
+		}
+	}
+}
+
+.balloon-line-right {
+	stroke-dasharray: 500;
+	stroke-dashoffset: 0;
+	animation: balloon-lines-right var(--balloon-lines-dur) linear var(--balloon-lines-del) infinite;
+
+	@keyframes balloon-lines-right {
+		0%, 16% {
+			stroke-dashoffset: 500;
+		}
+
+		60%, 90% {
+			stroke-dashoffset: 0;
+		}
+
+		90.1%, 100% {
+			stroke-dashoffset: 500;
+		}
+	}
+}
+
+.balloon-line-bg {
+	opacity: var(--opacity-start);
+}
+
+@keyframes shake-left {
+	0%, 24.9% {
+		transform: rotate(0deg);
+	}
+
+	25%, 74.9% {
+		transform: rotate(-10deg);
+	}
+
+	75%, 100% {
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes shake-right {
+	0%, 24.9% {
+		transform: rotate(0deg);
+	}
+
+	25%, 74.9% {
+		transform: rotate(10deg);
+	}
+
+	75%, 100% {
+		transform: rotate(0deg);
+	}
+}

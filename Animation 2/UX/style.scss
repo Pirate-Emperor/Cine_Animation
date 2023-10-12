@@ -1,0 +1,273 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+@mixin object($width, $height, $bg) {
+	width: $width;
+	height: $height;
+	background: $bg;
+}
+
+@mixin transPos($top, $right, $bottom, $left,$transX,$transY) {
+	position: absolute;
+	top: $top;
+	left: $left;
+	right: $right;
+	bottom: $bottom;
+	transform: translate($transX, $transY);
+}
+
+@mixin center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-image: linear-gradient(-45deg, #00c6fb 0%, #005bea 100%);
+	background-repeat: no-repeat;
+	height: 100vh;
+}
+
+ul {
+	height: 100%;
+}
+
+li {
+	border: 1px solid rgba(#fff, 0.1);
+	display: flex;
+	width: 25%;
+	height: 50%;
+	float: left;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+h4 {
+	@include transPos(null,null,8vh,50%,-50%,0);
+	text-align: center;
+	margin-top: 40px;
+	color: #fff;
+	font-family: "Open Sans", sans-serif;
+}
+
+@media screen and (max-width: 767px) {
+	li {
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 567px) {
+	li {
+		width: 100%;
+	}
+}
+
+span {
+	border-radius: 4px;
+	display: block;
+}
+
+/***
+Easing
+***/
+
+#easing {
+	overflow: hidden;
+	width: 200px;
+	span {
+		@include object(80px,80px,#fff);
+		animation: easing 2s ease-out infinite;
+		@keyframes easing {
+			0% {
+				transform: translateX(-120px);
+			}
+			75% {
+				transform: translateX(40px);
+			}
+			100% {
+				transform: translateX(250px);
+			}
+		}
+	}
+}
+
+/***
+Parenting
+***/
+
+#parenting {
+	span {
+		@include object(100px,40px,#fff);
+		margin: 10px 0;
+		animation: slide 1s ease-in-out infinite alternate;
+		@keyframes slide {
+			0% {
+				transform: translateX(-50px);
+			}
+			100% {
+				transform: translateX(50px);
+			}
+		}
+		&:first-child {
+			transform-origin: 50% 100%;
+			animation: growShrink 1s ease-in-out infinite alternate;
+			@keyframes growShrink {
+				0% {
+					transform: translateX(-50px) scale(0.1);
+				}
+				100% {
+					transform: translateX(50px) scale(1);
+				}
+			}
+		}
+	}
+}
+
+/***
+Obscuration
+***/
+#obscuration {
+	@include object(60px,80px,#fff);
+	border-radius: 4px;
+	position: relative;
+	span {
+		opacity: 0.7;
+		@include object(90px,110px,#f7f7f7);
+		@include transPos(50%,null,null,-60px,0,-50%);
+		animation: obscure 1s cubic-bezier(0.6, 0, 0.4, 1) infinite alternate;
+		@keyframes obscure {
+			100% {
+				left: 30px;
+			}
+		}
+	}
+}
+
+/***
+Dolly & Zoom
+***/
+
+#dollyZoom {
+	@include object(65px,65px,transparent);
+	overflow: hidden;
+	border-radius: 4px;
+	position: relative;
+	ul {
+		@include object(150px,150px,transparent);
+		overflow:hidden;
+		position:absolute;
+		top:50%;
+		left:50%;
+		transform: scale(1) translate(-50%,-50%);
+		transform-origin:118% 103%;
+		animation: zoom 2s ease-in-out infinite alternate;
+		@keyframes zoom {
+			100% {
+				transform-origin:center center;
+				transform: scale(0.412) translate(-120%,-122%);
+			}
+		}
+	}
+	li {
+		background: #fff;
+		border-radius: 0;
+		width:40px;
+		height: 40px;
+		margin-right: 15px;
+		&:nth-child(3n){
+			margin-right: 0;
+		}
+		&:nth-child(4),
+		&:nth-child(5),
+		&:nth-child(6),
+		&:nth-child(7),
+		&:nth-child(8),
+		&:nth-child(9){
+			margin-top: 15px;
+		}
+	}
+}
+
+/***
+Transformation
+***/
+
+#transformation {
+	@include object(60px,60px,#fff);
+	border-radius: 50%;
+	animation: transform 1s ease-in-out infinite alternate;
+	@keyframes transform {
+		100% {
+			width: 150px;
+			border-radius: 4px;
+		}
+	}
+}
+
+/***
+Masking
+***/
+
+#masking {
+	@include object(150px,60px,#EAEAEA);
+	@include center;
+	border-radius: 4px;
+	overflow: hidden;
+	span {
+		@include object(30px,30px,#fff);
+		border-radius: 50%;
+		animation: fill 1s ease-in-out infinite alternate;
+		@keyframes fill {
+			100% {
+				width: 250px;
+				height: 250px;
+				border-radius: 50%;
+			}
+		}
+	}
+}
+
+/***
+Parallax
+***/
+
+#parallax {
+	@include object(160px,90px,#EAEAEA);
+	@include center;
+	border-radius: 4px;
+	span {
+		@include object(120px,90px,#fff);
+		animation: parallax 1s ease-in-out infinite alternate;
+		@keyframes parallax {
+			0% {
+				transform: translateY(-20px);
+			}
+			100% {
+				transform: translateY(20px);
+			}
+		}
+	}
+}
+
+/***
+Dimentionality
+***/
+li:nth-child(5) {
+	perspective: 400px;
+}
+#dimension {
+	@include object(190px,60px,#fff);
+	border-radius: 4px;
+	animation: dimension 1s ease-in-out infinite alternate;
+	@keyframes dimension {
+		100% {
+			transform: rotateX(-90deg);
+		}
+	}
+}

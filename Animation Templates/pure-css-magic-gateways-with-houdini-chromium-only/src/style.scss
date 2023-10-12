@@ -1,0 +1,266 @@
+$gate-l: 6em;
+$gate-w: .25*$gate-l;
+$gate-g: 1.5*$gate-l;
+$gate-o: .5*($gate-w + $gate-l);
+$gate-a: .35;
+$gate-b: .75;
+$gate-z: $gate-g + $gate-l;
+
+$cube-l: $gate-l/3;
+$cube-r: .5*$cube-l;
+$cube-p: 35%;
+$cube-z: 1.5*$cube-l;
+
+%oppose {
+	transform: 
+		rotate3d(var(--vi), var(--vj), 0, calc(var(--s)*.5turn)) 
+		translatez(var(--z, #{$cube-r}))
+}
+
+%shaded {
+	--int: Max(0, calc(var(--sum) - .5));
+	--mod: calc(var(--sum) - var(--int));
+	--abs: Max(calc(.5 - var(--mod)), calc(var(--mod) - .5));
+	--k: calc(1 - 2*var(--abs));
+	color: hsl(200, var(--sat, 75%), calc(63% - var(--k, -.1)*50%));
+	background: currentcolor;
+}
+
+@property --d {
+	syntax: '<length>';
+	initial-value: 0px;
+	inherits: true
+}
+
+@property --p {
+	syntax: '<number>';
+	initial-value: 0;
+	inherits: true
+}
+
+@property --int {
+	syntax: '<integer>';
+	initial-value: 0;
+	inherits: true
+}
+
+@property --f {
+	syntax: '<number>';
+	initial-value: 0;
+	inherits: true
+}
+
+body, div { display: grid }
+
+body {
+	overflow: hidden;
+	margin: 0;
+	height: 100vh;
+	background: #319eea;
+	
+	&:before, &:after {
+		--o: calc(var(--s)*-100%);
+		position: absolute;
+		z-index: -1;
+		top: calc(var(--s)*100%);
+		left: calc(var(--s)*100%);
+		padding: 0 .5em;
+		transform: translate(var(--o), var(--o));
+		opacity: .05;
+		color: #fff;
+		font: italic 900 4vmin/ 2 petit formal script;
+		white-space: nowrap;
+		text-align: center
+	}
+	
+	&:after { content: 'Missing you every day' }
+	
+	&:before { content: '1st of June 1927 - 18th of January 2019' }
+}
+
+div {
+	--vi: 0;
+	--vj: calc(1 - var(--vi));
+	transform-style: preserve-3d
+}
+
+div, ::before, ::after { grid-area: 1/ 1 }
+
+.side, ::before, ::after {
+	--not-s: calc(1 - var(--s));
+	--sgn-s: calc(2*var(--s) - 1);
+	backface-visibility: hidden
+}
+
+.side:nth-child(1), ::before { --s: 0 }
+.side:nth-child(3), ::after { --s: 1 }
+
+.a3d {
+	grid-gap: $gate-g;
+	grid-template: #{$gate-l}/ repeat(var(--n), $gate-l);
+	place-self: center;
+	transform: rotatex(-35deg) rotatey(45deg)
+}
+
+.unit {
+	--f: .5;
+	--m: calc(.5*(var(--n) - 1));
+	grid-area: 1/ calc(var(--i) + 1);
+	transform: 
+		translatez(calc((var(--j) - var(--m))*#{$gate-z})) 
+		rotatey(calc(var(--p, 0)*1turn));
+}
+
+.anim {
+	animation: 
+		p var(--tr) 
+		cubic-bezier(var(--cx), calc(-1*var(--cx)), 
+								 calc(1 - var(--cx)), calc(1 + var(--cx))) 
+		var(--dt) infinite alternate, 
+		osc var(--to) ease-in-out infinite alternate
+}
+
+@keyframes p {
+	0%, 25% { --p: 0 }
+	75%, 100% { --p: .5 }
+}
+
+@keyframes osc {
+	0%, #{$cube-p} { --d: #{-$cube-z} }
+	#{100% - $cube-p}, 100% { --d: #{$cube-z} }
+}
+
+.shdw {
+	&::before {
+		transform: 
+			translatey($gate-o) 
+			rotatex(90deg);
+		background: radial-gradient(rgba(#000, .5), transparent);
+		filter: blur(9px);
+		content: ''
+	}
+}
+
+.cube {
+	--vi: 1;
+	--sat: 62%;
+	place-self: center;
+	width: $cube-l; height: $cube-l;
+	transform: translatez(var(--d));
+	
+	&::after {
+		--s: .5;
+		@extend %oppose;
+		@extend %shaded;
+		content: ''
+	}
+}
+
+.half {
+	--dir: 0;
+	transform: rotatey(calc(var(--dir)*90deg));
+	
+	&:nth-child(2) { --dir: 1 }
+	
+	&::before, &::after {
+		--sum: calc(var(--p) + .5*var(--s) + .25*var(--dir) + 1);
+		@extend %oppose;
+		@extend %shaded;
+		content: ''
+	}
+}
+
+.gate {
+	animation: 
+		f calc(.5*var(--to)) ease-in-out infinite alternate;
+	
+	&::before {
+		align-self: center;
+		height: $gate-w
+	}
+}
+
+@keyframes f {
+	0%, #{$cube-p} { --f: .35 }
+	100% { --f: .75 }
+}
+
+.later {
+	--lat-w: #{$gate-l};
+	--sgn-e: calc(2*var(--e) - 1);
+	@extend %shaded;
+	grid-auto-flow: column;
+	justify-content: center;
+	place-self: center;
+	width: var(--lat-w); height: $gate-w;
+	transform: 
+		translatey(calc(-.5*var(--sgn-e)*var(--lat-w))) 
+		rotatex(90deg);
+	
+	.side, &::before, &::after {
+		--sum: calc(var(--p) + .25 + .5*(var(--e) - var(--sgn-e)*var(--s)) + 1);
+		@extend %shaded;
+		grid-area: initial;
+		width: inherit;
+		transform-origin: calc(var(--not-s)*100%);
+		transform: 
+			rotatey(calc(var(--sgn-s)*var(--sgn-e)*90deg));
+	}
+}
+
+.outer {
+	--e: 1;
+	grid-gap: $gate-l;
+	
+	&::before, &::after { content: '' }
+}
+
+.front {
+	&::before, &::after {
+		--z: #{.5*$gate-w};
+		--sum: calc(var(--p) + var(--s)*.5 + 1);
+		@extend %oppose;
+		@extend %shaded;
+		border: solid calc(.5*(1 - var(--f))*#{$gate-l}) currentcolor;
+		background: transparent;
+		content: ''
+	}
+}
+
+.inner {
+	--e: 0;
+	--lat-w: calc(var(--f)*#{$gate-l})
+}
+
+.side {
+	--sum: calc(var(--p) + .25 + .5*var(--s) + 1);
+	
+	.anim & {
+		&:nth-child(2) {
+			overflow: hidden;
+			
+			&::after {
+				place-self: center;
+				width: $cube-l; height: $cube-l;
+				transform: translatey(var(--d));
+				background: radial-gradient(#000, transparent);
+				filter: blur(9px);
+				content: ''
+			}
+		}
+		
+		&::before {
+			margin: 3px 0;
+			background: 
+				linear-gradient(45deg, hotpink 15%, gainsboro, gold 85%);
+			animation: 
+				glow calc(.5*var(--to)) ease-out infinite alternate;
+			content: ''
+		}
+	}
+}
+
+@keyframes glow {
+	0%, #{$cube-p} { opacity: 0 }
+	#{2*$cube-p}, 100% { --f: .75 }
+}

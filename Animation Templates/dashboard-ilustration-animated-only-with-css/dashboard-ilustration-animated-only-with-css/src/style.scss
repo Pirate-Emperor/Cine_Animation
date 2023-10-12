@@ -1,0 +1,360 @@
+$cursor-duration: 10s;
+$animation-timing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+.timeline {
+	background: grey;
+	height: 5px;
+	.line {
+		background: red;
+		height: 5px;
+		width: 0%;
+		animation: timeline $cursor-duration linear both;
+		border-radius: 2px;
+	}
+}
+@keyframes timeline {
+	to {
+		width: 100%;
+	}
+}
+
+.animation-container {
+	width: 100%;
+	height: 50vw;
+	max-height: 420px;
+	max-width: 840px;
+	margin: 40px auto;
+	position: relative;
+	animation: fadeIn 0.2s ease-out both;
+	&:after,
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: url("https://unitienda.net/demo/finalis/wp-content/uploads/2021/06/dots.png")
+			30% 0 no-repeat;
+		background-size: 18%;
+		z-index: -1;
+	}
+	&:before {
+		background-position: 80% 100%;
+	}
+	img {
+		width: 100%;
+		position: absolute;
+		user-drag: none;
+		user-select: none;
+		-moz-user-select: none;
+		-webkit-user-drag: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+	$circles: 1 10vw 10% 0% transparent #d6d3f8 bg-pulse 5s,
+		2 15vw 0% 15% #d6d3f8 transparent bg-rotation 22s,
+		3 5vw 52% 0% transparent #f6f7fe bg-pulse 3s,
+		4 4vw 48% 5% #d6d3f8 transparent bg-rotation 23s,
+		6 13vw 74% 32% #d6d3f8 transparent bg-rotation 23s,
+		5 6vw 88% 50% transparent #ccecfc bg-pulse 4s;
+	.circle {
+		border-radius: 100%;
+		position: absolute;
+		@each $index, $size, $left, $top, $border, $bg, $animation,
+			$duration in $circles
+		{
+			&:nth-child(#{$index}) {
+				border: 2px dashed $border;
+				background: $bg;
+				left: $left;
+				top: $top;
+				width: $size;
+				height: $size;
+				animation: $animation $duration $animation-timing both infinite;
+			}
+		}
+	}
+	.cursor {
+		width: 2vw;
+		max-width: 20px;
+		left: calc(50% - 10px);
+		top: calc(50% - 10px);
+		animation: cursor $cursor-duration $animation-timing both;
+		animation-direction: alternate;
+		fill: #333;
+		.rotateCursor {
+			transform: rotateY(180deg);
+			transform-origin: center center;
+		}
+	}
+	.dashboard {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 70%;
+		display: block;
+		margin: 0 auto;
+		animation: scaleInCenter 1s ease-in-out;
+	}
+	svg {
+		height: auto;
+		position: absolute;
+		user-drag: none;
+		user-select: none;
+	}
+	.activity {
+		width: 100%;
+		max-height: 400px;
+		top: 50%;
+		right: 0%;
+		width: 45%;
+		animation: scaleInUp 0.7s ease-in-out 5.5s both;
+		animation-direction: alternate;
+		$sizesBars: 10, 20, 30, 40, 50, 60, 70, 80, 90, 110;
+		$timeOffset: 0.07s;
+		$i: 1;
+		@each $sizesBar in $sizesBars {
+			$delayBar: 6 + $i * $timeOffset;
+			.bar.size-#{$sizesBar} {
+				animation: barHeight-#{$sizesBar} 0.7s ease-in-out $delayBar both;
+			}
+			@keyframes barHeight-#{$sizesBar} {
+				from {
+					height: 0;
+					transform: translateY(0px);
+				}
+				to {
+					height: $sizesBar + px;
+					transform: translateY(-$sizesBar + px);
+				}
+			}
+			$i: 1 + $i;
+		}
+		.bubble {
+			animation: showBubble 0.7s ease-in-out 7.5s both;
+			transform-origin: center;
+		}
+		.days {
+			$timeOffsetDays: 0.3s;
+			animation: fadeIn 0.7s ease-in-out both;
+			@for $i from 1 through 8 {
+				&.day-#{$i} {
+					animation-delay: 5.5 + $i * $timeOffsetDays !important;
+				}
+			}
+		}
+		.select {
+			$timeOffsetDays: 0.3s;
+			animation: fadeInUp 0.7s ease-in-out both;
+			transform-origin: center;
+			@for $i from 1 through 2 {
+				&.sele-#{$i} {
+					animation-delay: 5.5 + $i * $timeOffsetDays !important;
+				}
+			}
+		}
+		.title {
+			animation: fadeInRight 1s ease-in-out 5.7s both;
+		}
+		.sub-title {
+			animation: fadeInRight 1s ease-in-out 5.9s both;
+		}
+	}
+	.menu {
+		max-height: 520px;
+		top: 0;
+		left: 0;
+		width: 30%;
+		animation: scaleInUp 0.7s ease-in-out 1.5s both;
+		animation-direction: alternate;
+		.logo {
+			animation: fadeInRight 0.7s ease-in-out 2s both;
+		}
+		.menu-item {
+			$timeOffsetMenuItem: 0.3s;
+			transform-origin: center;
+			@for $i from 1 through 5 {
+				&:nth-child(#{$i}) {
+					animation: flipVertical 0.7s ease-in-out both;
+					animation-delay: 1.5 + $i * $timeOffsetMenuItem !important;
+				}
+			}
+		}
+	}
+	.compliance {
+		top: 0;
+		right: 10%;
+		width: 30%;
+		display: block;
+		margin: 0 auto;
+		animation: scaleInUp 0.7s ease-in-out 3.5s both;
+		animation-direction: alternate;
+		.bottom-link,
+		.title {
+			animation: fadeInRight 0.3s ease-in-out 4.5s both;
+		}
+		.text-step {
+			animation: fadeInUp 0.3s ease-in-out 4.7s both;
+		}
+		.progress-bar {
+			animation: fadeInUp 0.3s ease-in-out 4.9s both;
+			.bar {
+				width: 0;
+				animation: progressBar 1s ease-in 5.3s both;
+			}
+		}
+		.button-blue {
+			animation: fadeInUp 0.3s ease-in-out 5.1s both;
+		}
+	}
+}
+@keyframes bg-pulse {
+	50% {
+		transform: scale(0.7) translatey(5%);
+	}
+}
+@keyframes bg-rotation {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+@keyframes progressBar {
+	to {
+		width: 177px;
+	}
+}
+@keyframes flipVertical {
+	from {
+		transform: rotateY(90deg);
+	}
+	to {
+		transform: rotateY(0deg);
+	}
+}
+@keyframes showBubble {
+	from {
+		transform: rotate(15deg) translatey(10px);
+		opacity: 0;
+	}
+}
+
+@keyframes scaleInCenter {
+	0% {
+		transform: translate(-50%, -50%) scale(0.8);
+		opacity: 0.2;
+	}
+	100% {
+		transform: translate(-50%, -50%) scale(1);
+		opacity: 1;
+	}
+}
+@keyframes scaleInUp {
+	from {
+		transform: scale(0);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-20px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+
+		transform: translatey(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translatey(0);
+	}
+}
+@keyframes fadeInRight {
+	from {
+		opacity: 0;
+
+		transform: translatex(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translatex(0);
+	}
+}
+@keyframes cursor {
+	0% {
+		opacity: 0;
+	}
+	5% {
+		opacity: 1;
+	}
+	10%,
+	20% {
+		left: 23%;
+	}
+	14% {
+		transform: scale(1);
+	}
+	15% {
+		transform: scale(0.8);
+	}
+	16% {
+		transform: scale(1);
+	}
+	30%,
+	40% {
+		top: 40%;
+		left: 73%;
+	}
+	34% {
+		transform: scale(1);
+	}
+	35% {
+		transform: scale(0.8);
+	}
+	36% {
+		transform: scale(1);
+	}
+	50%,
+	60% {
+		top: 75%;
+		left: 73%;
+	}
+	51% {
+		transform: scale(1);
+	}
+	52% {
+		transform: scale(0.8);
+	}
+	53% {
+		transform: scale(1);
+	}
+	70% {
+		opacity: 1;
+	}
+	80% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}

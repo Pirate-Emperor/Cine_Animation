@@ -1,0 +1,34 @@
+- let n = 5;
+- let m = n*n;
+
+mixin unit()
+	- let c = Math.round(Math.random());
+	- let tr, dt, to;
+	- if(c) {
+		- tr = +(5 + 3*Math.random()).toFixed(2);
+		- dt = +(-tr*Math.random()).toFixed(2);
+		- to = +(1 + Math.random()).toFixed(2);
+		- cx = +(.25 + .75*Math.random()).toFixed(2);
+	- }
+	.unit(class=c ? 'anim' : null 
+				style=c ? `--tr: ${tr}s; --to: ${to}s; --dt: ${dt}s; --cx: ${cx}` : null)
+		- if(c)
+			.cube.shdw
+				.half
+				.half
+		.gate.shdw
+			.inner.later
+				- for(let i = 0; i < 3; i++)
+					.side
+			.front
+			.outer.later
+
+style
+	- for(let i = 0; i < n; i++)
+		| .unit:nth-child(#{n}n + #{i + 1}) { --i: #{i} }
+		| .unit:nth-child(n + #{n*i + 1}) { --j: #{i} }
+	- for(let i = 0; i < 3; i++)
+		| .side:nth-child(#{i + 1}) { --idx: #{i} }
+.a3d(style=`--n: ${n}`)
+	- for(let i = 0; i < m; i++)
+		+unit()
