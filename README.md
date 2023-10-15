@@ -33,6 +33,3 @@ To add more animations or modify existing ones, you can edit the `styles.css` an
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-```
-
-Please note that this README is quite generic. You should customize it according to the specific details of your project, including the project name, description, list of animations, etc.
